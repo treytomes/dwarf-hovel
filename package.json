@@ -1,0 +1,42 @@
+{
+  "name": "dwarf-hovel",
+  "version": "0.0.1",
+  "description": "Experience life in a dwarven hovel!",
+  "main": "index.js",
+  "scripts": {
+    "build": "webpack",
+    "start": "webpack server --open",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "watch": "webpack --watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/treytomes/dwarf-hovel.git"
+  },
+  "author": "Trey Tomes",
+  "license": "GPL-3.0-or-later",
+  "bugs": {
+    "url": "https://github.com/treytomes/dwarf-hovel/issues"
+  },
+  "homepage": "https://github.com/treytomes/dwarf-hovel#readme",
+  "devDependencies": {
+    "@types/lodash": "^4.14.191",
+    "css-loader": "^6.7.1",
+    "csv-loader": "^3.0.3",
+    "html-webpack-plugin": "^5.5.0",
+    "style-loader": "^3.3.1",
+    "ts-loader": "^9.4.2",
+    "typescript": "^4.9.4",
+    "webpack": "^5.70.0",
+    "webpack-cli": "^4.9.2",
+    "webpack-dev-server": "^4.7.4",
+    "xml-loader": "^1.2.1"
+  },
+  "dependencies": {
+    "jimp": "^0.16.1",
+    "lodash": "^4.17.21",
+    "node-polyfill-webpack-plugin": "^1.1.4",
+    "text-loader": "^0.0.1",
+    "twgl.js": "^4.22.0"
+  }
+}

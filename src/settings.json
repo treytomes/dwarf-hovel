@@ -1,0 +1,16 @@
+{
+	"world": {
+		"width": 64,
+		"height": 64
+	},
+	"room": {
+		"width": {
+			"min": 8,
+			"max": 12
+		},
+		"height": {
+			"min": 8,
+			"max": 12
+		}
+	}
+}
