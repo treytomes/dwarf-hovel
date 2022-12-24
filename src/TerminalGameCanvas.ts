@@ -3,6 +3,7 @@ import { generatePalette } from './framework/radialPalette';
 import ConsoleTile from './ConsoleTile';
 import TileSet from './TileSet';
 import OEM437_8 from './OEM437_8.png';
+import { max, min } from 'lodash';
 
 export default class TerminalGameCanvas extends GameCanvas {
 	tileSet: TileSet;
@@ -85,6 +86,90 @@ export default class TerminalGameCanvas extends GameCanvas {
 			}
 		}
 	}
+
+	drawHLine(x1: number, x2: number, y: number, tileIndex: string|number, fg: number, bg: number) {
+		[ x1, x2 ] = [ min([ x1, x2 ]), max([ x1, x2 ]) ];
+
+		for (let x = x1; x <= x2; x++) {
+			this.drawTile(y, x, tileIndex, fg, bg);
+		}
+	}
+
+	// TODO: Flip drawTile coordinates from (row, col) to (x, y).
+	drawVLine(x: number, y1: number, y2: number, tileIndex: string|number, fg: number, bg: number) {
+		[ y1, y2 ] = [ min([ y1, y2 ]), max([ y1, y2 ]) ];
+
+		for (let y = y1; y <= y2; y++) {
+			this.drawTile(y, x, tileIndex, fg, bg);
+		}
+	}
+
+	drawRect(x: number, y: number, width: number, height: number, tileIndex: string|number, fg: number, bg: number) {
+		if (x + width > this.columns) {
+			width = this.columns - x;
+		}
+		if (y + height > this.rows) {
+			height = this.rows - y;
+		}
+
+		const top = y;
+		const bottom = y + height - 1;
+		const left = x;
+		const right = x + width - 1;
+
+		this.drawVLine(left, top + 1, bottom - 1, tileIndex, fg, bg);
+		this.drawVLine(right, top + 1, bottom - 1, tileIndex, fg, bg);
+		this.drawHLine(left, right, top, tileIndex, fg, bg);
+		this.drawHLine(left, right, bottom, tileIndex, fg, bg);
+	}
+    
+    drawSingleRect(x: number, y: number, width: number, height: number, fg: number, bg: number) {
+		if (x + width > this.columns) {
+			width = this.columns - x;
+		}
+		if (y + height > this.rows) {
+			height = this.rows - y;
+		}
+
+		const top = y;
+		const bottom = y + height - 1;
+		const left = x;
+		const right = x + width - 1;
+
+		this.drawVLine(left, top + 1, bottom - 1, 179, fg, bg);
+		this.drawVLine(right, top + 1, bottom - 1, 179, fg, bg);
+		this.drawHLine(left + 1, right - 1, top, 196, fg, bg);
+		this.drawHLine(left + 1, right - 1, bottom, 196, fg, bg);
+
+		this.drawTile(top, left, 218, fg, bg);
+		this.drawTile(top, right, 191, fg, bg);
+		this.drawTile(bottom, left, 192, fg, bg);
+		this.drawTile(bottom, right, 217, fg, bg);
+    }
+
+    drawDoubleRect(x: number, y: number, width: number, height: number, fg: number, bg: number) {
+		if (x + width > this.columns) {
+			width = this.columns - x;
+		}
+		if (y + height > this.rows) {
+			height = this.rows - y;
+		}
+
+		const top = y;
+		const bottom = y + height - 1;
+		const left = x;
+		const right = x + width - 1;
+
+		this.drawVLine(left, top + 1, bottom - 1, 186, fg, bg);
+		this.drawVLine(right, top + 1, bottom - 1, 186, fg, bg);
+		this.drawHLine(left + 1, right - 1, top, 205, fg, bg);
+		this.drawHLine(left + 1, right - 1, bottom, 205, fg, bg);
+
+		this.drawTile(top, left, 201, fg, bg);
+		this.drawTile(top, right, 187, fg, bg);
+		this.drawTile(bottom, left, 200, fg, bg);
+		this.drawTile(bottom, right, 188, fg, bg);
+    }
 
 	clear() {
 		for (let r = 0; r < this.rows; r++) {

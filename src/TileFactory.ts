@@ -1,6 +1,20 @@
 import { getColor } from "./framework/radialPalette";
 import WorldTile from "./WorldTile";
 
+/*
+enum Direction {
+	N,
+	NE,
+	E,
+	SE,
+	S,
+	SW,
+	W,
+	NW,
+}
+*/
+
+// TODO: Define these in JSON.
 export default class TileFactory {
 	static wall() {
 		const tile = new WorldTile('#', getColor(420), getColor(0));

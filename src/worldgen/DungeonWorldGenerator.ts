@@ -6,6 +6,11 @@ import WorldGenerator from "./WorldGenerator";
 import Logger from "../Logger";
 import Settings from "../settings.json";
 
+// TODO: Need a cavern generator, with a town generator built on top of that.
+
+/**
+ * Generate a BSP dungeon.
+ */
 export default class DungeonWorldGenerator extends WorldGenerator {
 	rooms: Array<Room>;
 

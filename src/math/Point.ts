@@ -1,10 +1,26 @@
 export default class Point {
-	x: number;
-	y: number;
+	private _x: number;
+	private _y: number;
 	
 	constructor(x: number, y: number) {
 		this.x = x;
 		this.y = y;
+	}
+
+	get x(): number {
+		return this._x;
+	}
+
+	set x(n: number) {
+		this._x = Math.floor(n);
+	}
+
+	get y(): number {
+		return this._y;
+	}
+
+	set y(n: number) {
+		this._y = Math.floor(n);
 	}
 
 	static get zero(): Point {

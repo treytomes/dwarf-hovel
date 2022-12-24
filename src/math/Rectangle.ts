@@ -1,16 +1,48 @@
 import MoreMath from "../framework/MoreMath";
 
 export default class Rectangle {
-	x: number;
-	y: number;
-	width: number;
-	height: number;
+	private _x: number;
+	private _y: number;
+	private _width: number;
+	private _height: number;
 	
 	constructor(x: number, y: number, width: number, height: number) {
 		this.x = x;
 		this.y = y;
 		this.width = width;
 		this.height = height;
+	}
+
+	get x(): number {
+		return this._x;
+	}
+
+	set x(n: number) {
+		this._x = Math.floor(n);
+	}
+
+	get y(): number {
+		return this._y;
+	}
+
+	set y(n: number) {
+		this._y = Math.floor(n);
+	}
+
+	get width(): number {
+		return this._width;
+	}
+
+	set width(n: number) {
+		this._width = Math.floor(n);
+	}
+
+	get height(): number {
+		return this._height;
+	}
+
+	set height(n: number) {
+		this._height = Math.floor(n);
 	}
 
 	get left() {
