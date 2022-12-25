@@ -9,9 +9,16 @@ export default abstract class UIElement {
 	 */
 	bounds: Rectangle;
 
-	constructor(parent: UIElement, bounds: Rectangle) {
-		this.parent = parent;
+	constructor(bounds: Rectangle) {
+		this.parent = null;
 		this.bounds = bounds;
+	}
+
+	/**
+	 * Bounds relative to children.
+	 */
+	get clientArea(): Rectangle {
+		return new Rectangle(0, 0, this.bounds.width, this.bounds.height);
 	}
 
 	/**

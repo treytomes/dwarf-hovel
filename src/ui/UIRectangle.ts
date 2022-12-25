@@ -9,8 +9,8 @@ const TILEINDEX_SPACE = 32;
 export default class UIRectangle extends UIElement {
 	backgroundColor: number = null;
 
-	constructor(parent: UIElement, bounds: Rectangle, backgroundColor: number) {
-		super(parent, bounds);
+	constructor(bounds: Rectangle, backgroundColor: number) {
+		super(bounds);
 		this.backgroundColor = backgroundColor;
 	}
 

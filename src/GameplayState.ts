@@ -54,38 +54,20 @@ export default class GameplayState extends GameState {
 		this.particleFountains = [];
 		this.fov = new FieldOfVisionCalculator(Settings.world.width, Settings.world.height);
 
-		this.ui = new UIContainer(null, new Rectangle(0, 0, this.columns, this.rows));
-		const hud =  new UIContainer(this.ui, new Rectangle(0, 0, this.ui.bounds.width, 1));
-		this.ui.children.push(hud);
+		this.ui = new UIContainer(new Rectangle(0, 0, this.columns, this.rows));
+		const hud = this.ui.addChild(new UIContainer(new Rectangle(0, 0, this.ui.bounds.width, 1)));
 
-		const hudBackground = new UIRectangle(hud, new Rectangle(0, 0, this.ui.bounds.width, 1), HUD_BG_COLOR);
-		hud.children.push(hudBackground);
+		hud.addChild(new UIRectangle(new Rectangle(0, 0, this.ui.bounds.width, 1), HUD_BG_COLOR));
+		hud.addChild(new UILabel(new Rectangle(0, 0, 8, 1), HUD_FG_COLOR, HUD_BG_COLOR, () => `LVL:${this.player.level}`));
+		hud.addChild(new UILabel(new Rectangle(8, 0, 8, 1), HUD_FG_COLOR, HUD_BG_COLOR, () => `XP:${this.player.experience}/${this.player.experienceToLevel}`));
+		hud.addChild(new UILabel(new Rectangle(16, 0, 8, 1), HUD_FG_COLOR, HUD_BG_COLOR, () => `HP:${this.player.currentHealth}/${this.player.maxHealth}`));
 
-		const lvlLabel = new UILabel(hud, new Rectangle(0, 0, 8, 1), HUD_FG_COLOR, HUD_BG_COLOR, () => `LVL:${this.player.level}`);
-		hud.children.push(lvlLabel);
-
-		const xpLabel = new UILabel(hud, new Rectangle(8, 0, 8, 1), HUD_FG_COLOR, HUD_BG_COLOR, () => `XP:${this.player.experience}/${this.player.experienceToLevel}`);
-		hud.children.push(xpLabel);
-
-		const hpLabel = new UILabel(hud, new Rectangle(16, 0, 8, 1), HUD_FG_COLOR, HUD_BG_COLOR, () => `HP:${this.player.currentHealth}/${this.player.maxHealth}`);
-		hud.children.push(hpLabel);
-
-		const x = this.ui.bounds.width * 1 / 4;
-		const y = this.ui.bounds.height * 1 / 4;
-		const w = this.ui.bounds.width - x * 2;
-		const h = this.ui.bounds.height - y * 2;
-		const descWindow = new UIContainer(this.ui, new Rectangle(x, y, w, h));
-		this.ui.children.push(descWindow);
+		const descWindow = this.ui.addChild(new UIContainer(this.ui.bounds.scale(0.25)));
 		
 		// TODO: Don't allow an element to be it's own parent.
-		// TODO: Need a simpler way to represent this.  Maybe some rectangle math.  And a better addChild function.
 
-		console.log(x, y, w, h);
-		const descWindowBackground = new UIRectangle(descWindow, new Rectangle(0, 0, w, h), getColor(3));
-		descWindow.children.push(descWindowBackground);
-
-		const descWindowBorder = new UIBorder(descWindow, new Rectangle(0, 0, w, h), BorderStyle.Double, getColor(440), getColor(3));
-		descWindow.children.push(descWindowBorder);
+		descWindow.addChild(new UIRectangle(descWindow.clientArea, getColor(3)));
+		descWindow.addChild(new UIBorder(descWindow.clientArea, BorderStyle.Double, getColor(440), getColor(3)));
 	}
 
 	spawnDamageParticles(x: number, y: number) {

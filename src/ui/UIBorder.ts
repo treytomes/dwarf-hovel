@@ -18,8 +18,8 @@ export default class UIBorder extends UIElement {
     backgroundColor: number = null;
     style: BorderStyle;
 
-	constructor(parent: UIElement, bounds: Rectangle, style: BorderStyle, foregroundColor: number, backgroundColor: number = null) {
-		super(parent, bounds);
+	constructor(bounds: Rectangle, style: BorderStyle, foregroundColor: number, backgroundColor: number = null) {
+		super(bounds);
         this.foregroundColor = foregroundColor;
 		this.backgroundColor = backgroundColor;
         this.style = style;

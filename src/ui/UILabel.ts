@@ -7,8 +7,8 @@ export default class UILabel extends UIElement {
 	backgroundColor: number;
 	message: string|(() => string);
 
-	constructor(parent: UIElement, bounds: Rectangle, foregroundColor: number, backgroundColor: number, message: string|(() => string)) {
-		super(parent, bounds);
+	constructor(bounds: Rectangle, foregroundColor: number, backgroundColor: number, message: string|(() => string)) {
+		super(bounds);
 		this.foregroundColor = foregroundColor;
 		this.backgroundColor = backgroundColor;
 		this.message = message;

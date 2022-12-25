@@ -13,6 +13,10 @@ export default class Rectangle {
 		this.height = height;
 	}
 
+	static get zero() {
+		return new Rectangle(0, 0, 0, 0);
+	}
+
 	get x(): number {
 		return this._x;
 	}
@@ -71,5 +75,23 @@ export default class Rectangle {
 
 	contains(x: number, y: number): boolean {
 		return MoreMath.isInRange(x, this.left, this.right) && MoreMath.isInRange(y, this.top, this.bottom);
+	}
+
+	scale(n: number): Rectangle {
+		return new Rectangle(
+			this.x + this.width * n,
+			this.y + this.height * n,
+			this.width * n * 2,
+			this.height * n * 2
+		);
+	}
+
+	resize(w: number, h: number): Rectangle {
+		return new Rectangle(
+			this.x,
+			this.y,
+			w,
+			h
+		);
 	}
 }
