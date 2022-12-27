@@ -8,6 +8,12 @@ Experience life in a dwarven hovel!
 - Rat Farm
 - Cave Tours
 
+## TODO
+
+- Need to get the UI more fully operational before I can start expanding the world interaction.
+- Combat is nonexistent.  Interacting with other entities in the world would be fun.
+- I think I can make a English-->dwarf-ish language converter. 
+
 ## Tech Stack
 
 - Web GL
